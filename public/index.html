@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sourdough — Recipes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Sourdough Pizza & Bread</h1>
+  <section id="list">
+    <h2>Recipes</h2>
+    <ul id="recipes"></ul>
+  </section>
+
+  <section id="add">
+    <h2>Add Recipe</h2>
+    <form id="recipeForm">
+      <input id="name" placeholder="Name" required />
+      <input id="type" placeholder="Type (starter/dough)" required />
+      <input id="ingredients" placeholder="Comma-separated ingredients" />
+      <input id="notes" placeholder="Notes" />
+      <button type="submit">Add</button>
+    </form>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

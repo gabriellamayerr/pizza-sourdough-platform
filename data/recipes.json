@@ -1,0 +1,55 @@
+[
+  {
+    "id": "starter-1",
+    "name": "Basic Sourdough Starter",
+    "type": "starter",
+    "ingredients": [
+      "flour",
+      "water"
+    ],
+    "notes": "Feed daily"
+  },
+  {
+    "id": "pizza-1",
+    "name": "Sourdough Pizza Dough",
+    "type": "dough",
+    "ingredients": [
+      "starter",
+      "flour",
+      "water",
+      "salt",
+      "olive oil"
+    ],
+    "notes": "Cold ferment 24h"
+  },
+  {
+    "name": "Test Loaf",
+    "type": "dough",
+    "ingredients": [
+      "starter",
+      "flour"
+    ],
+    "notes": "test",
+    "id": "2e758033-8f02-4ee7-98be-f8b028f4f704"
+  },
+  {
+    "name": "CI Loaf",
+    "type": "dough",
+    "ingredients": [
+      "flour",
+      "water"
+    ],
+    "notes": "ci",
+    "id": "5306083d-d70c-48c3-a588-ef4ed50592a7"
+  },
+  {
+    "name": "CI Loaf",
+    "type": "dough",
+    "ingredients": [
+      "flour",
+      "water"
+    ],
+    "notes": "ci",
+    "id": "02607105-e533-4c06-8d73-630392663e63"
+  }
+]

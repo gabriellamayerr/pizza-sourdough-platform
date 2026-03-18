@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install
+        run: npm ci
+      - name: Start server
+        run: npm start &
+      - name: Wait for server
+        run: |
+          for i in {1..10}; do
+            curl -sSf http://localhost:3000/ && break || sleep 1;
+          done
+      - name: Run API tests
+        run: npm run test:api
+      - name: Run WDIO e2e (headless)
+        env:
+          HEADLESS: '1'
+        run: npm run test:e2e
+      - name: Upload allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
