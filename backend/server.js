@@ -11,6 +11,7 @@ app.use(express.json());
 
 const DATA_DIR = path.join(__dirname, 'data');
 const RECIPES_FILE = path.join(DATA_DIR, 'recipes.json');
+const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
 
 function readRecipes(){
   try { return JSON.parse(fs.readFileSync(RECIPES_FILE,'utf8')); } catch(e){ return []; }
@@ -19,6 +20,10 @@ function readRecipes(){
 function writeRecipes(list){
   fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.writeFileSync(RECIPES_FILE, JSON.stringify(list, null, 2));
+}
+
+function readProducts(){
+  try { return JSON.parse(fs.readFileSync(PRODUCTS_FILE,'utf8')); } catch(e){ return []; }
 }
 
 app.get('/api/recipes', (req, res) => {
@@ -92,21 +97,14 @@ app.get('/', (req, res) => {
 </html>`);
 });
 
-// Products & auth endpoints
-const products = [
-  { id: 1, name: 'Sourdough Starter', price: 12 },
-  { id: 2, name: 'Pizza Dough Balls', price: 8 },
-  { id: 3, name: 'Pizza Baking Class', price: 65 },
-  { id: 4, name: 'Bread Lame', price: 15 }
-];
-
+// Products & auth endpoints (load products from backend/data/products.json)
 app.get('/api/products', (req, res) => {
-  res.json(products);
+  res.json(readProducts());
 });
 
 app.get('/api/products/search', (req, res) => {
   const q = (req.query.q || '').toLowerCase();
-  const result = products.filter(p => p.name.toLowerCase().includes(q));
+  const result = readProducts().filter(p => p.name.toLowerCase().includes(q));
   res.json(result);
 });
 

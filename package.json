@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "node test/run.js",
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "start:frontend": "npm --prefix frontend run dev",
+    "start:backend": "node backend/server.js",
     "wdio": "wdio run ./wdio.conf.js",
     "test:api": "node test/api/axios.test.js",
     "test:e2e": "wdio run ./wdio.conf.js",

@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Sourdough Starter", "price": 12 },
+  { "id": 2, "name": "Pizza Dough Balls", "price": 8 },
+  { "id": 3, "name": "Pizza Baking Class", "price": 65 },
+  { "id": 4, "name": "Bread Lame", "price": 15 }
+]
