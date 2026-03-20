@@ -5,6 +5,8 @@ export default function Home(){
   const [recipes, setRecipes] = useState([])
   useEffect(()=>{ getRecipes().then(setRecipes) },[])
 
+  const [query, setQuery] = useState("")
+
   async function handleSubmit(e){
     e.preventDefault()
     const name = e.target.name.value
@@ -16,15 +18,33 @@ export default function Home(){
     e.target.reset()
   }
 
+    const search = async () => {
+      const res = await fetch(
+        `http://localhost:4000/api/products/search?q=${encodeURIComponent(
+          query
+        )}`
+      )
+
+      const data = await res.json()
+      setRecipes(data)
+    }
   return (
     <main>
       <h1>Sourdough Pizza & Bread</h1>
-      <section>
-        <h2>Recipes</h2>
-        <ul>
-          {recipes.map(r=> <li key={r.id}>{r.name} — {r.type} — {r.ingredients?.join(', ')}</li>)}
-        </ul>
-      </section>
+
+{/* ✅ SEARCH BAR */}
+<input 
+ placeholder="Search products..."
+ data-testid="search-input"
+ onChange={(e)=>setQuery(e.target.value)}
+/>
+
+<button 
+ data-testid="search-button"
+ onClick={search}
+>
+ Search
+</button>
 
       <section>
         <h2>Add Recipe</h2>
