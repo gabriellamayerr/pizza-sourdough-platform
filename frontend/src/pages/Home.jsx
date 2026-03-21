@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getRecipes, addRecipe } from '../api/api'
+import {
+  Box,
+  Heading,
+  Input,
+  Button,
+  Stack,
+  FormControl,
+  FormLabel,
+} from '@chakra-ui/react'
 
 export default function Home(){
   const [recipes, setRecipes] = useState([])
@@ -18,44 +27,43 @@ export default function Home(){
     e.target.reset()
   }
 
-    const search = async () => {
-      const res = await fetch(
-        `http://localhost:4000/api/products/search?q=${encodeURIComponent(
-          query
-        )}`
-      )
+  const search = async () => {
+    const res = await fetch(
+      `http://localhost:4000/api/products/search?q=${encodeURIComponent(query)}`
+    )
+    const data = await res.json()
+    setRecipes(data)
+  }
 
-      const data = await res.json()
-      setRecipes(data)
-    }
   return (
-    <main>
-      <h1>Sourdough Pizza & Bread</h1>
+    <Box maxW="800px" mx="auto" p={6}>
+      <Heading as="h1" size="xl" mb={4}>Sourdough Pizza & Bread</Heading>
 
-{/* ✅ SEARCH BAR */}
-<input 
- placeholder="Search products..."
- data-testid="search-input"
- onChange={(e)=>setQuery(e.target.value)}
-/>
+      <Stack direction="row" mb={6} spacing={3}>
+        <Input placeholder="Search products..." value={query} onChange={(e)=>setQuery(e.target.value)} />
+        <Button colorScheme="teal" onClick={search}>Search</Button>
+      </Stack>
 
-<button 
- data-testid="search-button"
- onClick={search}
->
- Search
-</button>
-
-      <section>
-        <h2>Add Recipe</h2>
-        <form onSubmit={handleSubmit}>
-          <input name="name" placeholder="Name" required />
-          <input name="type" placeholder="Type" required />
-          <input name="ingredients" placeholder="Comma-separated ingredients" />
-          <input name="notes" placeholder="Notes" />
-          <button type="submit">Add</button>
-        </form>
-      </section>
-    </main>
+      <Box as="section" mb={8}>
+        <Heading as="h2" size="lg" mb={4}>Add Recipe</Heading>
+        <Box as="form" onSubmit={handleSubmit}>
+          <Stack spacing={3}>
+            <FormControl>
+              <Input name="name" placeholder="Name" required />
+            </FormControl>
+            <FormControl>
+              <Input name="type" placeholder="Type" required />
+            </FormControl>
+            <FormControl>
+              <Input name="ingredients" placeholder="Comma-separated ingredients" />
+            </FormControl>
+            <FormControl>
+              <Input name="notes" placeholder="Notes" />
+            </FormControl>
+            <Button type="submit" colorScheme="blue">Add</Button>
+          </Stack>
+        </Box>
+      </Box>
+    </Box>
   )
 }

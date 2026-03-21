@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Box, Heading, Input, Button, Stack } from '@chakra-ui/react'
 
 export default function Login(){
 
@@ -23,22 +24,14 @@ alert("Login failed")
 
 return(
 
-<div>
-
-<h2>Login</h2>
-
-<input placeholder="email"
-onChange={(e)=>setEmail(e.target.value)}
-/>
-
-<input type="password"
-placeholder="password"
-onChange={(e)=>setPassword(e.target.value)}
-/>
-
-<button onClick={login}>Login</button>
-
-</div>
+<Box maxW="480px" mx="auto" p={6}>
+	<Heading as="h2" size="lg" mb={4}>Login</Heading>
+	<Stack spacing={3}>
+		<Input placeholder="email" onChange={(e)=>setEmail(e.target.value)} />
+		<Input type="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)} />
+		<Button colorScheme="teal" onClick={login}>Login</Button>
+	</Stack>
+</Box>
 
 )
 

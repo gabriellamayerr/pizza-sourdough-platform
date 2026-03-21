@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from "react"
 import { useParams } from "react-router-dom"
+import { Box, Heading, Text } from '@chakra-ui/react'
 
 export default function Product(){
 
@@ -14,16 +15,14 @@ fetch(`http://localhost:4000/api/products/${id}`)
 
 },[id])
 
-if(!product) return <p>Loading...</p>
+if(!product) return <Text p={6}>Loading...</Text>
 
 return(
-
-<div>
-<h2>{product.name}</h2>
-<p>{product.description}</p>
-<p>${product.price}</p>
-</div>
-
+	<Box maxW="700px" mx="auto" p={6}>
+		<Heading as="h2" size="lg" mb={3}>{product.name}</Heading>
+		<Text mb={2}>{product.description}</Text>
+		<Text fontWeight="bold">${product.price}</Text>
+	</Box>
 )
 
 }

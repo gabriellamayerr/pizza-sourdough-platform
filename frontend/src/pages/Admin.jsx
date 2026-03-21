@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Box, Heading, Input, Button, Stack } from '@chakra-ui/react'
 
 export default function Admin(){
 
@@ -11,9 +12,9 @@ await fetch("http://localhost:4000/api/products",{
  method:"POST",
  headers:{"Content-Type":"application/json"},
  body: JSON.stringify({
-  name,
-  price,
-  description:"New product"
+    name,
+    price,
+    description:"New product"
  })
 })
 
@@ -23,18 +24,14 @@ alert("Product added")
 
 return(
 
-<div>
-
-<h2>Admin Dashboard</h2>
-
-<input placeholder="name" onChange={e=>setName(e.target.value)}/>
-<input placeholder="price" onChange={e=>setPrice(e.target.value)}/>
-
-<button onClick={addProduct}>
- Add product
-</button>
-
-</div>
+<Box maxW="720px" mx="auto" p={6}>
+    <Heading as="h2" size="lg" mb={4}>Admin Dashboard</Heading>
+    <Stack spacing={3}>
+        <Input placeholder="name" onChange={e=>setName(e.target.value)}/>
+        <Input placeholder="price" onChange={e=>setPrice(e.target.value)}/>
+        <Button colorScheme="teal" onClick={addProduct}>Add product</Button>
+    </Stack>
+</Box>
 
 )
 
